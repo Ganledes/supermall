@@ -1,18 +1,43 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <nav-bar v-slot:center>购物街</nav-bar>
+    <home-carousel :banners="banners"/>
+    <home-recommend :recommends="recommends"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  import NavBar from "@/components/navbar/NavBar";
+  import HomeCarousel from "@/components/carousel/HomeCarousel";
+  import HomeRecommend from "@/components/HomeRecommend";
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  import {getMultiData} from "@/network/home";
+
+  export default {
+    name: "Home",
+    components: {
+      NavBar,
+      HomeCarousel,
+      HomeRecommend
+    },
+    data() {
+      return {
+        banners: [],
+        recommends: []
+      }
+    },
+    created() {
+      getMultiData().then(value => {
+        this.banners = value.data.banner.list
+        this.recommends = value.data.recommend.list
+      })
+    }
   }
-}
 </script>
+
+<style scoped>
+  .nav-bar {
+    color: #fff;
+    background-color: var(--color-tint);
+  }
+</style>
