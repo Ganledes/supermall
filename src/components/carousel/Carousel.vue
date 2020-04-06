@@ -27,7 +27,7 @@
       },
       moveRatio: {
         type: Number,
-        default: 0.25
+        default: 0.1
       },
       showIndicator: {
         type: Boolean,
@@ -49,7 +49,7 @@
         this.handleDom();
         // 2.开启定时器
         this.startTimer();
-      }, 200)
+      }, 500)
     },
     methods: {
       /**

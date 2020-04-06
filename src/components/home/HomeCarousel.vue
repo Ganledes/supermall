@@ -2,7 +2,7 @@
   <carousel>
     <carousel-item v-for="item in banners">
       <a href="">
-        <img :src="item.image" alt="">
+        <img :src="item.image" alt="" @load="CarouselImgLoad">
       </a>
     </carousel-item>
   </carousel>
@@ -14,6 +14,10 @@
 
   export default {
     name: "HomeCarousel",
+    components: {
+      Carousel,
+      CarouselItem
+    },
     props: {
       banners: {
         type: Array,
@@ -22,9 +26,18 @@
         }
       }
     },
-    components: {
-      Carousel,
-      CarouselItem
+    data() {
+      return {
+        isLoad: false
+      }
+    },
+    methods: {
+      CarouselImgLoad() {
+        if (!this.isLoad) {
+          this.$emit('CarouselImgLoad')
+          this.isLoad = true
+        }
+      }
     }
   }
 </script>

@@ -29,6 +29,7 @@
     text-align: center;
     padding: 10px 0 15px 0;
     border-bottom: 7px solid #eee;
+    width: 100%;
   }
 
   .recommend-item {
@@ -37,8 +38,7 @@
   }
 
   .recommend-item img {
-    width: 70px;
-    height: 70px;
+    width: 70%;
     margin-bottom: 5px;
   }
 </style>
